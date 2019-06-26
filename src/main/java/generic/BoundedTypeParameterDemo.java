@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Tony
+ * @author yanglikun
  */
 public class BoundedTypeParameterDemo<E extends Closeable> {
 

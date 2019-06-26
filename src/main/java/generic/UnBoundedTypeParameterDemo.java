@@ -1,7 +1,7 @@
 package generic;
 
 /**
- * @author Tony
+ * @author yanglikun
  */
 public class UnBoundedTypeParameterDemo<E> {
 

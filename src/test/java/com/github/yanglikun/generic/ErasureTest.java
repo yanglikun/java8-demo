@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author Tony
+ * @author yanglikun
  */
 public class ErasureTest {
 
