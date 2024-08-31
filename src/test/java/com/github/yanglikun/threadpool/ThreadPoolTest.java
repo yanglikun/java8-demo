@@ -89,6 +89,50 @@ public class ThreadPoolTest extends BaseTest {
     }
 
 
+    @Test
+    public void testFuture() throws Exception {
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                5,
+                10,
+                1,
+                TimeUnit.HOURS,
+                new ArrayBlockingQueue<>(3),
+                threadFactory
+        );
+        Future<String> future = executor.submit(() -> {
+            try {
+                TimeUnit.MINUTES.sleep(1000L);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return "done";
+        });
+        System.out.println(future.get());
+    }
+
+    @Test
+    public void testKillThread() throws Exception {
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                1,
+                1,
+                1,
+                TimeUnit.HOURS,
+                new ArrayBlockingQueue<>(3),
+                threadFactory
+        );
+        Future<String> future = executor.submit(() -> {
+            while (true) {
+                try {
+                    TimeUnit.SECONDS.sleep(5);
+                    logger.info("next loop");
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        System.out.println(future.get());
+    }
+
     static class CustomThreadPoolExecutor extends ThreadPoolExecutor {
 
         private AtomicInteger taskCount = new AtomicInteger();
